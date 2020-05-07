@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  mysqldb:
+    container_name: pos2DB
+    image: mysql:5.7
+    ports:
+      - "9306:3306"
+    volumes:
+      - 'mysqldb:/var/lib/mysql'
+      - ./share:/tmp/mysql:z
+#    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+volumes:
+  mysqldb:
+    driver: local
+
+# networks:
+#     default:
+#         external:
+#             name: james
